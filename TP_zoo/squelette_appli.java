@@ -4,8 +4,8 @@ public class squelette_appli {
 	
 	static final String CONN_URL = "jdbc:oracle:thin:@im2ag-oracle.e.ujf-grenoble.fr:1521:im2ag";
 	
-	static final String USER = "A COMPLETER";
-	static final String PASSWD = "A COMPLETER";
+	static final String USER = "tmprobert";
+	static final String PASSWD = "v8mRqUXj19";
 
 	static Connection conn; 
 	
@@ -27,7 +27,13 @@ public class squelette_appli {
 	  	conn.setAutoCommit(false);
   	    System.out.println("Autocommit disabled");
 
-	    // code métier de la fonctionnalité
+	    // code metier de la fonctionnalite
+            Statement requete = conn.createStatement();
+            ResultSet resultat = requete.executeQuery("SELECT * from lesGardiens");
+            while(resultat.next()) { // recuperation des resultats
+              System.out.println("Numero = " + resultat.getString("noCage") + ", Fonction = " + resultat.getString("fonction")+ ", Numero Allee= " + resultat.getString("noAllee"));
+	    };
+            requete.close();
 
   	    // Liberation des ressources et fermeture de la connexion...
        	// A COMPLETER

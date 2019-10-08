@@ -29,11 +29,19 @@ public class squelette_appli {
 
 	    // code metier de la fonctionnalite
             Statement requete = conn.createStatement();
-            ResultSet resultat = requete.executeQuery("SELECT * from lesGardiens");
+            ResultSet resultat = requete.executeQuery("SELECT * from LesCages");
             while(resultat.next()) { // recuperation des resultats
               System.out.println("Numero = " + resultat.getString("noCage") + ", Fonction = " + resultat.getString("fonction")+ ", Numero Allee= " + resultat.getString("noAllee"));
 	    };
             requete.close();
+	System.out.println("choisissez un numero de cage et une fonction :");
+	LectureClavier c= new LectureClavier();
+	int nocage= c.lireEntier("");
+	String fonction= c.lireChaine("");
+	 Statement requete = conn.createStatement();
+            ResultSet resultat = requete.executeQuery("update Lescages Set fonction=" + fonction +" where noCage =" +nocage);
+            
+
 
   	    // Liberation des ressources et fermeture de la connexion...
        	// A COMPLETER

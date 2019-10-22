@@ -43,7 +43,7 @@ create type tresponsable UNDER temploye (
 /
 
 -- Creation de la table lesemployes (Attention les les collections des classes herites n'ont pas de "container")
-create table lesemployes of temploye;
+create table lesemployes of REF temploye;
 
 -- Definir une collection libre ens_gardiens de references sur tgardien
 create type ens_gardiens as table of REF tgardien;
@@ -63,7 +63,7 @@ create table lescages of tcage
 nested table liste_gardiens Store as lesgardiens;
 
 -- Definir une collection libre ens_maladies de chaine de caracteres (maladie)
-create type ens_maladies as ;
+create type ens_maladies as table of varchar(20);
 /
 
 -- Creation de la table lesanimaux
@@ -74,7 +74,7 @@ create table LesAnimaux (
 	fonction_cage varchar2(20),
 	pays varchar2(20),
 	anNais number(4),
-	lacage _____,
+	lacage ,
 	liste_maladies _____,
 	constraint LesAnimaux_C1 primary key (nomA)
 )

@@ -4,11 +4,11 @@ drop table lescages FORCE;
 drop type ens_cages FORCE;
 drop type ens_maladies FORCE;
 drop type ens_gardiens FORCE;
-drop type tresponsable;
-drop type tgardien;
-drop type temploye;
-drop type tcage;
-drop type tspecialites;
+drop type tresponsable; 
+drop type tgardien; 
+drop type temploye; 
+drop type tcage; 
+drop type tspecialites; 
 
 -- ATTENTION: Il est plus prudent d'executer chaque commande de maniere ind�pendante, et pas le script complet
 -- => plus facile a debuguer

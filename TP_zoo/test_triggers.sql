@@ -32,16 +32,11 @@ End;
 create or replace trigger upd_gardiens_possibles before delete or update on lesgardiens
 	For each row
 	Declare 
-	nomsA integer;
-	Select count(lesanimaux.nomA) into nomsA from lesanimaux left join lesgardiens on lesanimaux.nocage=lesgardiens.nocage where lesgardiens.nocage=:old.nocage;
-	if(nomsA!=0) then 
-		For each row
-		Declare 
-		nomsE integer;
-		Select count(lesgardiens.nomE) into nomsE from lesgardiens where lesgardiens.nocage=:old.nocage;
-		if (nomsE=0) then
-			raise_application_error(-20101, 'Il faut au moins un gardien pour garder ces pauvres bêtes sans défense snif les animaux repliquent : "vasy wesh on est des bonhommes "');
-		end if;
+	nomsE integer;
+	begin
+	Select distinct count(distinct lesgardiens.nomE) into nomsE from (lesanimaux left join lesgardiens on lesanimaux.nocage=lesgardiens.nocage) where (lesgardiens.nocage=:old.nocage and ( ( lesanimaux.nocage = :old.nocage and lesgardiens.nomE != :old.nomE ))) ;
+	if(nomsE=0) then 
+		raise_application_error(-20101, 'update / delete du gardien impossible');
 	end if;
 END;
 /

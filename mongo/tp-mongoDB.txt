@@ -1,4 +1,10 @@
-exo3 : 1- db.people.find().sort( {“name”: 1} )
+﻿Nom du binôme :
+Saadi Amira
+Robert François
+M1 info - Groupe 2
+
+exo3 : 
+1- db.people.find().sort( {“name”: 1} )
 2-  db.restaurants.find({"cuisine":"Italian"}, {"name":1,"address.coord":1,"address.zipcode":1})
 3- db.restaurants.find({"telephoneNumber":{$exists:true},"cuisine":"Italian","address.zipcode":{$gte:"10075"}})
 4- db.restaurants.find({$or:[{"cuisine":"Italian","address.zipcode":"10075"}]})
@@ -12,13 +18,15 @@ exo5:
     { $unwind: "$cuisine" },
     { $group: { _id: "$cuisine", nb: { $sum: 1 }}} 
 ])
+
 2- db.restaurants.aggregate([
 	{ $match: { cuisine :'Italian'} },
     { $group: { _id: "$address.zipcode", nb: { $sum: 1 } } } 
 ])
 
 ex6: 
-1- db.createCollection("comments")
+2- 
+db.createCollection("comments")
 db.comments.insert({
 	"_id":"1",
 	"restaurant id": "1",
@@ -62,6 +70,7 @@ db.comments.insert({
 	"type": "sans commentaire",
 })
 
+3 -
 db.comments.aggregate(
 [ { $lookup: {
 from: restaurants,
